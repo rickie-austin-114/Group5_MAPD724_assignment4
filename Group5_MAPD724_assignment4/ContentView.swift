@@ -26,21 +26,26 @@ struct ContentView: View {
                 
                 // Horizontal ScrollView for selected images
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
+                    HStack(spacing: 12) {
                         ForEach(0..<selectedImages.count, id: \.self) { index in
                             selectedImages[index]
                                 .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 100, height: 100)
-                                .padding(4)
-                                .background(Color.white)
-                                .cornerRadius(8)
+                                .scaledToFill()
+                                .frame(width: 120, height: 120)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color.white, lineWidth: 2)
+                                )
                                 .shadow(radius: 5)
                         }
                     }
-                    .padding()
+                    .padding(.horizontal)
                 }
-                .frame(height: UIScreen.main.bounds.height / 5)
+                // Use containerRelativeFrame instead of GeometryReader
+                .containerRelativeFrame(.vertical) { height, _ in
+                    height * 0.20 // 20% of container height
+                }
             }
         }
         .photosPicker(isPresented: $showPhotoSelector,
