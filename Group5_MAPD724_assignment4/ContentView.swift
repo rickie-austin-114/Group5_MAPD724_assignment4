@@ -4,9 +4,9 @@ import PhotosUI
 
 struct ContentView: View {
     
-    @State private var showPhotoSelector = false
-    @State private var selectedPhotos: [PhotosPickerItem] = []
-    @State private var selectedImages: [Image] = []
+    @State var showPhotoSelector = false
+    @State var selectedPhoto: PhotosPickerItem?
+    @State var selectedImage: Image?
     
     var body: some View {
         ZStack {
@@ -17,7 +17,7 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all) // Make the gradient fullscreen
             
             VStack {
-                Button("Select Photos") {
+                Button("Select Photo") {
                     showPhotoSelector = true
                 }
                 .padding()
@@ -25,36 +25,20 @@ struct ContentView: View {
                 .cornerRadius(10)
                 .shadow(radius: 10) // Add shadow for better visibility
                 
-                Spacer()
-                
-                // Horizontal ScrollView for selected images
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(selectedImages, id: \.self) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 100, height: 100) // Fixed size for images
-                                .padding(4)
-                                .background(Color.white.opacity(0.8))
-                                .cornerRadius(8)
-                                .shadow(radius: 5)
-                        }
-                    }
-                    .padding()
+                if let selectedImage {
+                    selectedImage
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding()
                 }
-                .frame(height: UIScreen.main.bounds.height / 5) // Height of 1/5 of the screen
             }
         }
-        .photosPicker(isPresented: $showPhotoSelector, selection: $selectedPhotos, matching: .images, preferredItemEncoding: .compatible)
-        .onChange(of: selectedPhotos) { _, newValue in
+        .photosPicker(isPresented: $showPhotoSelector, selection: $selectedPhoto, matching: .images, preferredItemEncoding: .compatible)
+        .onChange(of: selectedPhoto) { _, newValue in
             Task {
-                selectedImages.removeAll() // Clear previous images
-                for photo in newValue.prefix(5) { // Limit to 5 photos
+                if let newValue {
                     do {
-                        if let image = try await loadImage(from: photo) {
-                            selectedImages.append(image)
-                        }
+                        self.selectedImage = try await loadImage(from: newValue)
                     } catch {
                         print(error)
                     }
@@ -63,7 +47,7 @@ struct ContentView: View {
         }
     }
     
-    private func loadImage(from item: PhotosPickerItem) async throws -> Image? {
+    private func loadImage(from item: PhotosPickerItem) async throws -> Image {
         guard let image = try await item.loadTransferable(type: Image.self) else {
             throw PHPhotosError(.invalidResource)
         }
