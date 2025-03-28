@@ -1,0 +1,18 @@
+{
+  "" : {
+    "dependencies" : "/Users/rickie/Documents/centennial/MAPD724/Group5_MAPD724_assignment4/DerivedData/Group5_MAPD724_assignment4/Index.noindex/Build/Intermediates.noindex/Group5_MAPD724_assignment4.build/Debug-iphonesimulator/Group5_MAPD724_assignment4.build/Objects-normal/arm64/Group5_MAPD724_assignment4-master.d",
+    "diagnostics" : "/Users/rickie/Documents/centennial/MAPD724/Group5_MAPD724_assignment4/DerivedData/Group5_MAPD724_assignment4/Index.noindex/Build/Intermediates.noindex/Group5_MAPD724_assignment4.build/Debug-iphonesimulator/Group5_MAPD724_assignment4.build/Objects-normal/arm64/Group5_MAPD724_assignment4-master.dia",
+    "emit-module-dependencies" : "/Users/rickie/Documents/centennial/MAPD724/Group5_MAPD724_assignment4/DerivedData/Group5_MAPD724_assignment4/Index.noindex/Build/Intermediates.noindex/Group5_MAPD724_assignment4.build/Debug-iphonesimulator/Group5_MAPD724_assignment4.build/Objects-normal/arm64/Group5_MAPD724_assignment4-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/rickie/Documents/centennial/MAPD724/Group5_MAPD724_assignment4/DerivedData/Group5_MAPD724_assignment4/Index.noindex/Build/Intermediates.noindex/Group5_MAPD724_assignment4.build/Debug-iphonesimulator/Group5_MAPD724_assignment4.build/Objects-normal/arm64/Group5_MAPD724_assignment4-master-emit-module.dia",
+    "swift-dependencies" : "/Users/rickie/Documents/centennial/MAPD724/Group5_MAPD724_assignment4/DerivedData/Group5_MAPD724_assignment4/Index.noindex/Build/Intermediates.noindex/Group5_MAPD724_assignment4.build/Debug-iphonesimulator/Group5_MAPD724_assignment4.build/Objects-normal/arm64/Group5_MAPD724_assignment4-master.swiftdeps"
+  },
+  "/Users/rickie/Documents/centennial/MAPD724/Group5_MAPD724_assignment4/DerivedData/Group5_MAPD724_assignment4/Index.noindex/Build/Intermediates.noindex/Group5_MAPD724_assignment4.build/Debug-iphonesimulator/Group5_MAPD724_assignment4.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+
+  },
+  "/Users/rickie/Documents/centennial/MAPD724/Group5_MAPD724_assignment4/Group5_MAPD724_assignment4/ContentView.swift" : {
+
+  },
+  "/Users/rickie/Documents/centennial/MAPD724/Group5_MAPD724_assignment4/Group5_MAPD724_assignment4/Group5_MAPD724_assignment4App.swift" : {
+
+  }
+}
