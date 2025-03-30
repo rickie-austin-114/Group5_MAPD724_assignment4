@@ -17,12 +17,17 @@ struct ContentView: View {
             
             
             VStack {
+                
+                
                 Button("Add Photo") {
                     showPhotoSelector = true
                 }
-                .padding()
+                .padding(.top, 20) // Add some top padding, ensure the button located at the top of the screen
                 .background(Color.white)
                 .cornerRadius(10)
+
+                Spacer() // use spacer to push the button to the top of the screen
+
                 
                 // Horizontal ScrollView for selected images
                 ScrollView(.horizontal) {
@@ -38,7 +43,11 @@ struct ContentView: View {
                 .containerRelativeFrame(.vertical) { height, _ in
                     height * 0.20 // 20% of container height
                 }
+                
+                Spacer()// use spacer to push the scrollview to the center of the screen
+
             }
+            .frame(maxHeight: .infinity) // Ensures VStack takes full height of the screen
         }
         .photosPicker(isPresented: $showPhotoSelector,
                      selection: $selectedPhoto,
@@ -51,14 +60,9 @@ struct ContentView: View {
     
     private func handlePhotoSelection(_ newValue: [PhotosPickerItem]) {
         Task {
-            
             // Limit to 5 photos, else print error message
             if newValue.count <= 5 {
-                
                 selectedImages.removeAll()
-                
-
-                
                 for photo in newValue {
                     do {
                         if let image = try await loadImage(from: photo) {
